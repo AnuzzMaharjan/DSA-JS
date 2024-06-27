@@ -1,102 +1,42 @@
-// class Queue {
-//     constructor() {
-//         this.item = [];
-//     }
-//     enqueue(element) {
-//         this.item.push(element);
-//     }
-//     isEmpty() {
-//         if (this.item.length === 0) {
-//             return true;
-//         }
-//         return false;
-//     }
-//     dequeue() {
-//         if (!this.isEmpty()) {
-//             return this.item.shift();
-//         }
-//         else {
-//             return "Queue Empty";
-//         }
-//     }
-//     peek() {
-//         if (!this.isEmpty()) {
-//             return this.item[0];
-//         }
-//         return null;
-//     }
-//     size() {
-//         return this.item.length;
-//     }
-//     print() {
-//         console.log(this.item.toString());
-//     }
-// }
+const LinkedList = require('./linkedListWithTail');
 
-// const queue = new Queue();
-
-// console.log(queue.isEmpty());
-
-// queue.enqueue(10);
-// queue.enqueue(20);
-// queue.enqueue(30);
-
-// console.log(queue.peek());
-// console.log(queue.size());
-// queue.print();
-// queue.dequeue();
-
-// console.log(queue.isEmpty());
-// console.log(queue.peek());
-// console.log(queue.size());
-// queue.print();
-
-
-
-//using object
-
-class Queue {
+class LinkedListQueue {
     constructor() {
-        this.items = {};
-        this.rear = 0;
-        this.front = 0;
+        this.list = new LinkedList();
     }
-
-    enqueue(element) {
-        this.items[this.rear] = element;
-        this.rear++;
+    enqueue(value) {
+        this.list.append(value);
     }
     dequeue() {
-        const item = this.items[this.front];
-        delete this.items[this.front];
-        this.front++;
-        return item;
-    }
-    isEmpty() {
-        return this.rear - this.front === 0;
+        return this.list.removeFromFront();
     }
     peek() {
-        return this.items[this.front];
+        return this.list.head.value;
     }
-    size() {
-        return this.rear - this.front;
+    isEmpty() {
+        return this.list.isEmpty();
+    }
+    getSize() {
+        return this.list.getSize();
     }
     print() {
-        console.log(this.items);
+        return this.list.print();
     }
 }
 
-const queue = new Queue();
+const list = new LinkedListQueue();
 
-console.log(queue.isEmpty());
+console.log(list.isEmpty());
 
-queue.enqueue(1);
-queue.enqueue(2);
-queue.enqueue(3);
+list.enqueue(10);
+list.enqueue(20);
+list.enqueue(30);
 
-console.log(queue.peek());
-console.log(queue.size());
-queue.print();
+list.print();
 
-console.log(queue.dequeue());
-console.log(queue.peek());
+console.log(list.peek());
+console.log(list.getSize());
+console.log(list.dequeue());
+
+list.print();
+console.log(list.isEmpty());
